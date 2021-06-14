@@ -1,6 +1,4 @@
-<?php
-include 'login-server.php';
-?>
+<?php include 'login-server.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +10,7 @@ include 'login-server.php';
 </head>
 <body class="bg-dark">
 <nav class="navbar navbar-light bg-white">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.html">
     <img src="images/logo.png" width="150" height="40" alt="">
   </a>
 </nav>
@@ -20,7 +18,7 @@ include 'login-server.php';
 <form action="" method="POST" class="container">
     <div class="form-group">
         <label for="phoneNumber" class="text-white">Phone Number:</label>
-        <input type="number" name="phoneNumebr" class="form-control">
+        <input type="number" name="phoneNumber" class="form-control">
     </div>
     <div class="form-group">
         <label for="password" class="text-white">Password:</label>
