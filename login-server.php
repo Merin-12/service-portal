@@ -3,13 +3,13 @@ session_start();
 include 'connection.php';
 if(isset($_SESSION['userType'])){
     if($_SESSION['userType'] == 'admin'){
-        header('location: Admin/admin-homepage.php');
+        header('location: admin/admin-dashboard.php');
     }
     else if($_SESSION['userType'] == 'shop'){
-        header('location: Shop/shop-homepage.php');
+        header('location: shop/shop-dashboard.php');
     }
     else if($_SESSION['userType'] == 'user'){
-        header('location: User/user-homepage.php');
+        header('location: user/user-dashboard.php');
     }
 }
 else{
@@ -19,28 +19,31 @@ else{
         $password = md5($password);
         $userValidationQuery = "SELECT * FROM users WHERE phoneNumber='$phoneNumber' AND password='$password'";
         $userValidationQueryResult = mysqli_query($con,$userValidationQuery);
-        if($userValidationQueryResult){
+        if(mysqli_num_rows($userValidationQueryResult)>0){
             $userDetails = mysqli_fetch_assoc($userValidationQueryResult);
             if($userDetails['userType'] == 'admin'){
-                $_SESSION['name'] = $name;
+                $_SESSION['name'] = $userDetails['name'];
                 $_SESSION['phoneNumber'] = $phoneNumber;
                 $_SESSION['userType'] = 'admin';
+                $_SESSION['userId'] = $userDetails['id'];
                 echo "<script>alert('Login Successfull');</script>";
-                echo "<script>window.location.href='Admin/admin-homepage.php';</script>";
+                echo "<script>window.location.href='admin/admin-dashboard.php';</script>";
             }
             else if($userDetails['userType'] == 'user'){
                 $_SESSION['name'] = $name;
                 $_SESSION['phoneNumber'] = $phoneNumber;
                 $_SESSION['userType'] = 'user';
+                $_SESSION['userId'] = $userDetails['id'];
                 echo "<script>alert('Login Successfull');</script>";
-                echo "<script>window.location.href='Users/user-homepage.php';</script>";
+                echo "<script>window.location.href='user/user-dashboard.php';</script>";
             }
             else if($userDetails['userType'] == 'shop'){
                 $_SESSION['name'] = $name;
                 $_SESSION['phoneNumber'] = $phoneNumber;
                 $_SESSION['userType'] = 'shop';
+                $_SESSION['userId'] = $userDetails['id'];
                 echo "<script>alert('Login Successfull');</script>";
-                echo "<script>window.location.href='Shops/shop-homepage.php';</script>";
+                echo "<script>window.location.href='shop/shop-dashboard.php';</script>";
             } 
         }
         else{
