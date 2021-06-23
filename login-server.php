@@ -30,7 +30,7 @@ else{
                 echo "<script>window.location.href='admin/admin-dashboard.php';</script>";
             }
             else if($userDetails['userType'] == 'user'){
-                $_SESSION['name'] = $name;
+                $_SESSION['name'] = $userDetails['name'];
                 $_SESSION['phoneNumber'] = $phoneNumber;
                 $_SESSION['userType'] = 'user';
                 $_SESSION['userId'] = $userDetails['id'];
@@ -38,7 +38,7 @@ else{
                 echo "<script>window.location.href='user/user-dashboard.php';</script>";
             }
             else if($userDetails['userType'] == 'shop'){
-                $_SESSION['name'] = $name;
+                $_SESSION['name'] = $userDetails['name'];
                 $_SESSION['phoneNumber'] = $phoneNumber;
                 $_SESSION['userType'] = 'shop';
                 $_SESSION['userId'] = $userDetails['id'];
